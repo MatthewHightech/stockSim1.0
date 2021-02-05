@@ -1,4 +1,4 @@
 export interface user {
-    uid: string;
-    email: string;
+    username: string;
+    classCode: string;
 }

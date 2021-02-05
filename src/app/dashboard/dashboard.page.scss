@@ -20,6 +20,20 @@ ion-col {
     background: var(--ion-color-dark);
 }
 
+img {
+    width: 60%;
+    height: auto;
+}
+
+.menuButton {
+    width: 100%;
+    --border-radius: 0px;
+    height: 100px;
+    margin: 0px;
+    --background: var(--ion-color-dark);
+    border: 2px var(--ion-color-dark-shade) solid; 
+}
+
 // main content
 
 #content {

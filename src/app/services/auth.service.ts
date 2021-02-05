@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 
 
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-import { Observable } from 'rxjs';
+import { UserDataService } from './user-data.service';
 
 interface user {
   username: string; 
@@ -16,26 +16,33 @@ interface user {
 })
 export class AuthService {
 
+  authState: any = null;
 
   constructor(private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router) {
+      this.auth.authState.subscribe( authState => {
+        this.authState = authState;
+      });
     } // constructor
 
-  usersCollection: AngularFirestoreCollection<user> = this.firestore.collection('users'); 
+  isAuthenticated(): boolean {
+    return this.authState !== null;
+  }
+
+  currentUserId(): string {
+    return this.isAuthenticated ? this.authState.uid : null;
+  }
 
   // Sign up with email/password
   SignUp(username, email, password, classCode, popup) {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
-        console.log("1", this.firestore); 
         // save user doc in users collection in firestore
         await this.firestore.collection('users').doc(result.user.uid).set({
-          username: username 
+          username: username, 
+          classroom: classCode
         }); 
-        await this.firestore.collection('classrooms').doc(classCode).collection('students').doc(result.user.uid).set({
-          username: username
-        });
         this.Login(email, password, popup); 
       }).catch((error) => {
         window.alert(error.message)
@@ -54,6 +61,12 @@ export class AuthService {
         window.alert(error.message)
       })
   } // login
+
+  LogOut() {
+    return this.auth.signOut().then(() => {
+      this.router.navigate(['/', 'sign-up-login']);
+    })
+  }
 
 } // auth service class
 
