@@ -18,6 +18,8 @@ ion-col {
 
 #sidebar {
     background: var(--ion-color-dark);
+    font-family: 'theme';
+    color: var(--ion-color-light); 
 }
 
 img {
@@ -32,6 +34,8 @@ img {
     margin: 0px;
     --background: var(--ion-color-dark);
     border: 2px var(--ion-color-dark-shade) solid; 
+    font-family: 'theme';
+    color: var(--ion-color-light); 
 }
 
 // main content

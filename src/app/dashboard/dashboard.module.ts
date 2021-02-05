@@ -8,6 +8,14 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 
+// components
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { NewsComponent } from './news/news.component';
+import { HomeComponent } from './home/home.component';
+import { BuySellComponent } from './buy-sell/buy-sell.component';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +23,6 @@ import { DashboardPage } from './dashboard.page';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage, PortfolioComponent, NewsComponent, HomeComponent, BuySellComponent]
 })
 export class DashboardPageModule {}

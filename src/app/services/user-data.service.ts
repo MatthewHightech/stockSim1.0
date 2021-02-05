@@ -11,16 +11,11 @@ import { user } from './user.model';
 })
 export class UserDataService {
 
+  constructor(private firestore: AngularFirestore, private authService: AuthService) {}
 
-
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {
-  }
-
-
+  // returns user based on the signed in id as an observable *dashboard is subscribed to this*
   getUser(): Observable<user> {
      return this.firestore.collection('users').doc<user>(this.authService.currentUserId()).valueChanges(); 
   }
-
-
 
 }
