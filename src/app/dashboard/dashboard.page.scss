@@ -1,0 +1,27 @@
+// sidebar
+
+ion-grid {
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-row {
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-col {
+    margin: 0px;
+    padding: 0px; 
+    height: 100vh; 
+}
+
+#sidebar {
+    background: var(--ion-color-dark);
+}
+
+// main content
+
+#content {
+    background: var(--ion-color-theme);
+}

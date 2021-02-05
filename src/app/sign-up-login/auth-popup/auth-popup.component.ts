@@ -15,6 +15,7 @@ export class AuthPopupComponent implements OnInit {
   email: string;
   password: string;
   confirmPassword: string; 
+  classcode: string; 
 
   constructor(public auth: AuthService,) { }
 

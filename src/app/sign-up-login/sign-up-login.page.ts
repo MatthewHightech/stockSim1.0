@@ -22,7 +22,6 @@ export class SignUpLoginPage implements OnInit {
 
   // async function to control the potential popups for the game. This includes a deathscreen, instructions, and checkpoints
   popover = async function presentPopover(type: string) { 
-    this.auth.dbTest(); 
     if (type == "Sign Up") {
       this.signUpPopup = await this.popoverController.create({
         component: AuthPopupComponent,
