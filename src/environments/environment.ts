@@ -4,15 +4,6 @@
 
 export const environment = {
   production: false, 
-  firebaseConfig: {
-    apiKey: "AIzaSyBFCz-FMcCxOuVDEh_AfMzfClen8G8Am1o",
-    authDomain: "stocksim-a9fe0.firebaseapp.com",
-    projectId: "stocksim-a9fe0",
-    storageBucket: "stocksim-a9fe0.appspot.com",
-    messagingSenderId: "530105532100",
-    appId: "1:530105532100:web:0dc2de0d33558965929391",
-    measurementId: "G-RXQXMB4LWE"
-  }
 };
 
 /*
