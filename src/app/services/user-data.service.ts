@@ -25,10 +25,9 @@ export class UserDataService {
         this.user = ref;
         console.log(this.user); 
       });
-    } 
-    /*else {
+    } else {
       this.router.navigate(['/', 'sign-up-login']);
-    }  */
+    }  
   } // subscribeToDb
 
   // returns user based on the signed in id as an observable *dashboard is subscribed to this*
