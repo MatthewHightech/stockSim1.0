@@ -1,3 +1,29 @@
-<p>
-  buy-sell works!
-</p>
+<ion-grid>
+  <ion-row>
+    <ion-col id="header">
+      <ion-title>Buy/Sell</ion-title>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="10">
+      <ion-title>{{ companyService.currentCompany.name }}</ion-title>
+      <br>
+      <ion-title>{{ companyService.currentCompany.bio }}</ion-title>
+      <br>
+      <canvas id="stock"></canvas>
+      <br>
+      <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
+      <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+    </ion-col>
+
+    <ion-col id="sidebar" size="2">
+      <ion-button id="button1" class="menuButton" (click)="changePage(0)">Oil</ion-button>
+      <ion-button class="menuButton" (click)="changePage(1)">Car #1</ion-button>
+      <ion-button class="menuButton" (click)="changePage(2)">Car #2</ion-button>
+      <ion-button class="menuButton" (click)="changePage(3)">Cyber Security</ion-button>
+      <ion-button class="menuButton" (click)="changePage(4)">Clothing</ion-button>
+      <ion-button class="menuButton" (click)="changePage(5)">Food</ion-button>
+      <ion-button class="menuButton" (click)="changePage(6)">Supermarket</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

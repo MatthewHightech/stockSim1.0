@@ -29,3 +29,9 @@
     font-family: 'theme';    // ref name
     src: url('./assets/fonts/theme.ttf');
   }
+
+  .my-custom-popup .popover-content {
+    background: var(--ion-color-dark);
+    width: 50%; 
+    top: 100px; 
+  }

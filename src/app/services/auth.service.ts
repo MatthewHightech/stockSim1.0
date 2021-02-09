@@ -5,11 +5,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { UserDataService } from './user-data.service';
 
-interface user {
-  username: string; 
-}
 
 @Injectable({
   providedIn: 'root'

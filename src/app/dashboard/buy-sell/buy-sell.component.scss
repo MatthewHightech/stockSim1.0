@@ -1,0 +1,40 @@
+ion-grid {
+    padding: 0px; 
+}
+
+
+ion-col {
+    text-align: center;
+    color: var(--ion-color-light); 
+    font-family: 'theme';
+    font-size: 32px;
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-title {
+    margin-top: 15px;
+}
+
+#header {
+    height: 10vh;
+    border-bottom: 4px var(--ion-color-light) solid;
+}
+
+// sidebar section
+
+#sidebar {
+    background: var(--ion-color-theme-tint);
+    height: 90vh; 
+}
+
+.menuButton {
+    width: 100%;
+    --border-radius: 0px;
+    height: 60px;
+    margin: 0px;
+    --background: var(--ion-color-theme-tint);
+    border-bottom: 2px var(--ion-color-theme-shade) solid; 
+    font-family: 'theme';
+    color: var(--ion-color-light); 
+}

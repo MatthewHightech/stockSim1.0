@@ -19,6 +19,8 @@ export class AuthPopupComponent implements OnInit {
 
   constructor(public auth: AuthService,) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.popover)
+  }
 
 }

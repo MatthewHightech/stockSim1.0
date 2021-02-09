@@ -12,25 +12,16 @@ import { user } from '../services/user.model';
 })
 export class DashboardPage implements OnInit {
 
-  user: user = {
-    username: "", 
-    classCode: ""
-  }; 
+  page: string = "home"; 
 
-  constructor(public authService: AuthService, public userService: UserDataService, public router: Router) {
-    if (this.authService.isAuthenticated()) {
-      this.userService.getUser().subscribe((ref) => {
-        this.user = ref;
-        console.log(this.user); 
-      });
-    } else {
-      this.router.navigate(['/', 'sign-up-login']);
-    }
-  } // constructor
-
+  constructor(public authService: AuthService, public userService: UserDataService) {} // constructor
 
   ngOnInit() {
+    this.userService.subscribeToDb();
+  }
 
+  changePage(page: string) {
+    this.page = page; 
   }
 
 }

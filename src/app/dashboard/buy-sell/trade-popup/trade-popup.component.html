@@ -1,0 +1,15 @@
+<ion-content>
+  <ion-title>{{ type + " " + companyService.currentCompany.name }}</ion-title>
+  <ion-text>{{ "Current " + type + "ing price: $" + companyService.currentCompany.currentPrice}}</ion-text>
+  <br><br>
+  <ion-label position="floating"> {{ "Select number of stocks to " + type }}</ion-label>
+  <ion-input [(ngModel)]="numStocksBought" placeholder="" type="number" (ionChange)="updateTotals()"></ion-input>
+  <br>
+  <ion-text>{{ "Subtotal: $" + subtotal + ".00"}}</ion-text><br>
+  <ion-text *ngIf="type == 'Buy'">{{ "Purchase Fee: $" + purchaseFee  + ".00"}}</ion-text><br>
+  <ion-text>{{ "Total: $" + total  + ".00"}}</ion-text>
+  <br><br>
+  <ion-text>{{ "Your budget after this transaction: $"}}</ion-text><br>
+  <ion-button color="dark" (click)="confirmTransaction()">Confirm Transaction</ion-button>
+</ion-content>
+

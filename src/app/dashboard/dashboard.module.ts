@@ -13,8 +13,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { NewsComponent } from './news/news.component';
 import { HomeComponent } from './home/home.component';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
-
-
+import { TradePopupComponent } from './buy-sell/trade-popup/trade-popup.component';
 
 @NgModule({
   imports: [
@@ -23,6 +22,6 @@ import { BuySellComponent } from './buy-sell/buy-sell.component';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage, PortfolioComponent, NewsComponent, HomeComponent, BuySellComponent]
+  declarations: [DashboardPage, PortfolioComponent, NewsComponent, HomeComponent, BuySellComponent, TradePopupComponent]
 })
 export class DashboardPageModule {}

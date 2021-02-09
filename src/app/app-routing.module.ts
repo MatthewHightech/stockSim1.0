@@ -5,7 +5,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'sign-up-login',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {

@@ -11,6 +11,7 @@ ion-row {
 }
 
 ion-col {
+    text-align: center;
     margin: 0px;
     padding: 0px; 
     height: 100vh; 
@@ -27,13 +28,17 @@ img {
     height: auto;
 }
 
+#button1 {
+    margin-top: 20px;
+}
+
 .menuButton {
     width: 100%;
     --border-radius: 0px;
     height: 100px;
     margin: 0px;
     --background: var(--ion-color-dark);
-    border: 2px var(--ion-color-dark-shade) solid; 
+    border-bottom: 2px var(--ion-color-dark-shade) solid; 
     font-family: 'theme';
     color: var(--ion-color-light); 
 }

@@ -1,0 +1,13 @@
+ion-col {
+    text-align: center;
+    color: var(--ion-color-light); 
+    font-family: 'theme';
+    font-size: 32px;
+    margin: 0px;
+    padding: 0px; 
+}
+
+#header {
+    height: 10vh;
+    border-bottom: 4px var(--ion-color-light) solid;
+}
