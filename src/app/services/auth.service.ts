@@ -54,6 +54,7 @@ export class AuthService {
          // close popup
          popup.dismiss().then(() => { popup = null; }); 
       }).catch((error) => {
+        console.log("loginFailed")
         window.alert(error.message)
       })
   } // login

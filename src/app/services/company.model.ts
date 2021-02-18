@@ -1,5 +1,6 @@
 export interface company {
     name: string, 
     bio: string, 
-    currentPrice: number
+    currentPrice: number, 
+    prices: number[]
 }

@@ -8,6 +8,10 @@ import { UserDataService } from 'src/app/services/user-data.service';
 import { user } from 'src/app/services/user.model';
 import { TradePopupComponent } from './trade-popup/trade-popup.component';
 
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
+
 @Component({
   selector: 'app-buy-sell',
   templateUrl: './buy-sell.component.html',
@@ -24,13 +28,80 @@ export class BuySellComponent implements OnInit {
     public companyService: CompanyDataService, 
     public popoverController: PopoverController) {}
 
+  
+  currentStockData: ChartDataSets[] = []; 
+  /*
+  [
+    {
+      data: [
+        {
+          x: 
+          y:
+        }, 
+        {
+          x2:
+          y2:
+        }
+      ], 
+      label: "", 
+      pointRadius: 1
+    }, 
+    // element 2
+  ]
+  */
 
-  ngOnInit() {}
+  chartOptions = {
+    responsive: true,
+    maintainAspectRatio: true, 
+    aspectRatio: 1,
+    animation: false,
+    scales: {
+      xAxes: [{
+          type: 'time',
+          time: {
+              unit: 'minute'
+          }
+      }]
+  }
+  };
+
+  chartLegend = false;
+  chartPlugins = [];
+  chartType = 'line';
+
+  
+  ngOnInit() {
+    this.loadGraphData(); 
+  }
 
   changePage(company: number) {
     this.companyService.currentCompany = this.companyService.companies[company]; 
+    this.loadGraphData(); 
     console.log(this.companyService.currentCompany); 
   }
+
+  loadGraphData() {
+    console.log( "time: " + moment().hour()); 
+    console.log("load graph length: " + this.companyService.currentCompany.prices.length)
+    this.currentStockData = [];
+    let coordinates = []; 
+    for (let i = 0; i < this.companyService.currentCompany.prices.length; i++) {
+      if (i < this.companyService.currentDay) {
+          coordinates.push({
+            x: i+2, 
+            y: this.companyService.currentCompany.prices[i]
+          }); 
+      } else {
+        break; 
+      }
+    } // for each price change
+    this.currentStockData.push({
+      data: coordinates, 
+      label: "Stock Graph", 
+      pointRadius: 1
+    }); 
+    console.log(this.currentStockData); 
+  } // loadGraphData
 
     // async function to control the potential popups for the game. This includes a buy and sell popup
     popover = async function presentPopover(type: string) { 

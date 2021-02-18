@@ -10,7 +10,15 @@
       <br>
       <ion-title>{{ companyService.currentCompany.bio }}</ion-title>
       <br>
-      <canvas id="stock"></canvas>
+      <div class="chart">
+        <canvas baseChart
+        [datasets]="currentStockData" 
+        [options]="chartOptions"
+        [legend]="chartLegend" 
+        [chartType]="chartType" 
+        [plugins]="chartPlugins">
+      </canvas>
+      </div>
       <br>
       <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
       <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>

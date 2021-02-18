@@ -4,4 +4,29 @@
       <ion-title>News</ion-title>
     </ion-col>
   </ion-row>
+
+  <ion-row>
+    <ion-col id="content">
+      <ion-row>
+        <ion-col *ngFor="let news of newsDataService.newspapers">
+          <div *ngIf="news.day == companyDataService.currentDay">
+            <ion-title>{{ news.title }}</ion-title>
+            <div *ngFor="let article of news.articles">
+              <ion-text>{{ article }}</ion-text>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let news of newsDataService.newspapers">
+          <div *ngIf="news.day < companyDataService.currentDay">
+            <ion-title>{{ news.title }}</ion-title>
+            <div *ngFor="let article of news.articles">
+              <ion-text>{{ article }}</ion-text>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
 </ion-grid>

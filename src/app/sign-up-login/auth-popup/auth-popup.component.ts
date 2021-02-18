@@ -20,7 +20,6 @@ export class AuthPopupComponent implements OnInit {
   constructor(public auth: AuthService,) { }
 
   ngOnInit() {
-    console.log(this.popover)
   }
 
 }

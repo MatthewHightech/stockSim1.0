@@ -21,18 +21,15 @@ export class UserDataService {
 
   subscribeToDb() {
     if (this.authService.isAuthenticated()) {
-      this.getUser().subscribe((ref) => {
+      this.firestore.collection('users').doc<user>(this.authService.currentUserId())
+      .valueChanges()
+      .subscribe((ref) => {
         this.user = ref;
         console.log(this.user); 
       });
-    } else {
+    } /*else {
       this.router.navigate(['/', 'sign-up-login']);
-    }  
+    }  */
   } // subscribeToDb
-
-  // returns user based on the signed in id as an observable *dashboard is subscribed to this*
-  getUser(): Observable<user> {
-     return this.firestore.collection('users').doc<user>(this.authService.currentUserId()).valueChanges(); 
-  }
 
 }
