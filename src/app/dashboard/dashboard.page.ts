@@ -17,7 +17,6 @@ export class DashboardPage implements OnInit {
   constructor(public authService: AuthService, public userService: UserDataService) {} // constructor
 
   ngOnInit() {
-    this.userService.subscribeToDb();
   }
 
   changePage(page: string) {

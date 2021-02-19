@@ -12,23 +12,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AuthService {
 
-  authState: any = null;
-
   constructor(private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router) {
-      this.auth.authState.subscribe( authState => {
-        this.authState = authState;
-      });
     } // constructor
-
-  isAuthenticated(): boolean {
-    return this.authState !== null;
-  }
-
-  currentUserId(): string {
-    return this.isAuthenticated ? this.authState.uid : null;
-  }
 
   // Sign up with email/password
   SignUp(username, email, password, classCode, popup) {
@@ -37,7 +24,9 @@ export class AuthService {
         // save user doc in users collection in firestore
         await this.firestore.collection('users').doc(result.user.uid).set({
           username: username, 
-          classroom: classCode
+          classroom: classCode, 
+          budget: 100000, 
+          portfolio: []
         }); 
         this.Login(email, password, popup); 
       }).catch((error) => {

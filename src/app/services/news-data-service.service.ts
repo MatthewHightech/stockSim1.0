@@ -9,7 +9,7 @@ export class NewsDataServiceService {
 
   newspapers: newspaper[] = [
     {
-      day: 1, 
+      day: 0, 
       title: "Daily News " + "Day 1", 
       articles: [
         "article 1", 
@@ -17,7 +17,7 @@ export class NewsDataServiceService {
       ]
     }, 
     {
-      day: 2, 
+      day: 1, 
       title: "Daily News " + "Day 2", 
       articles: [
         "article 1", 
@@ -25,8 +25,24 @@ export class NewsDataServiceService {
       ]
     }, 
     {
-      day: 3, 
+      day: 2, 
       title: "Daily News " + "Day 3", 
+      articles: [
+        "article 1", 
+        "article 2"
+      ]
+    }, 
+    {
+      day: 3, 
+      title: "Daily News " + "Day 4", 
+      articles: [
+        "article 1", 
+        "article 2"
+      ]
+    }, 
+    {
+      day: 4, 
+      title: "Daily News " + "Day 5", 
       articles: [
         "article 1", 
         "article 2"

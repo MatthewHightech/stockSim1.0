@@ -11,19 +11,19 @@ export class CompanyDataService {
       name: "Oil", 
       bio: "Oil Company BIO", 
       currentPrice: 20, 
-      prices: [5, 18, 22, 60]
+      prices: [5, 18, 22, 60, 120]
     }, 
     {
       name: "Car 1", 
       bio: "Car 1 Company BIO", 
       currentPrice: 140, 
-      prices: [2, 44, 22, 60]
+      prices: [2, 44, 22, 60, 8]
     }, 
     {
       name: "Car 2", 
       bio: "Car 2 Company BIO", 
       currentPrice: 70, 
-      prices: [66, 32, 22, 60]
+      prices: [66, 32, 4, 12, 43]
     }
   ]; 
 

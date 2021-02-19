@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 
 import { AuthService } from '../services/auth.service';
+import { UserDataService } from '../services/user-data.service';
 import { AuthPopupComponent } from './auth-popup/auth-popup.component'; 
 
 @Component({
@@ -15,7 +16,7 @@ export class SignUpLoginPage implements OnInit {
   signUpPopup = null;
   loginPopup = null; 
 
-  constructor(private router: Router, public auth: AuthService, public popoverController: PopoverController) {}
+  constructor(private router: Router, public auth: AuthService, public popoverController: PopoverController, public userDataService: UserDataService) {}
 
   ngOnInit() {
   }

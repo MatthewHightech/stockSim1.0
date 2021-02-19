@@ -8,17 +8,16 @@
   <ion-row>
     <ion-col id="content">
       <ion-row>
-        <ion-col *ngFor="let news of newsDataService.newspapers">
-          <div *ngIf="news.day == companyDataService.currentDay">
-            <ion-title>{{ news.title }}</ion-title>
-            <div *ngFor="let article of news.articles">
+        <ion-col class="today">
+            <ion-title>{{ currentPaper.title }}</ion-title>
+            <div *ngFor="let article of currentPaper.articles">
               <ion-text>{{ article }}</ion-text>
             </div>
-          </div>
         </ion-col>
       </ion-row>
+      <br><br>
       <ion-row>
-        <ion-col *ngFor="let news of newsDataService.newspapers">
+        <ion-col class="otherDays" *ngFor="let news of newsDataService.newspapers">
           <div *ngIf="news.day < companyDataService.currentDay">
             <ion-title>{{ news.title }}</ion-title>
             <div *ngFor="let article of news.articles">

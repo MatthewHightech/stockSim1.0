@@ -71,17 +71,19 @@ export class BuySellComponent implements OnInit {
 
   
   ngOnInit() {
+    this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.companyService.currentDay-1]; 
     this.loadGraphData(); 
   }
 
   changePage(company: number) {
     this.companyService.currentCompany = this.companyService.companies[company]; 
+    this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.companyService.currentDay-1]; 
     this.loadGraphData(); 
     console.log(this.companyService.currentCompany); 
   }
 
   loadGraphData() {
-    console.log( "time: " + moment().hour()); 
+    console.log(new Date()); 
     console.log("load graph length: " + this.companyService.currentCompany.prices.length)
     this.currentStockData = [];
     let coordinates = []; 
