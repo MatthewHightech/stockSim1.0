@@ -8,26 +8,50 @@ export class CompanyDataService {
 
   companies: company[] = [
     {
-      name: "Oil", 
-      bio: "Oil Company BIO", 
-      currentPrice: 20, 
-      prices: [5, 18, 22, 60, 120]
+      name: "Horizon Drilling", 
+      bio: "Horizon Drilling Bio", 
+      currentPrice: 0, 
+      prices: [45, 48, 56, 54, 60]
     }, 
     {
-      name: "Car 1", 
-      bio: "Car 1 Company BIO", 
-      currentPrice: 140, 
-      prices: [2, 44, 22, 60, 8]
+      name: "Katze Auto", 
+      bio: "Katze Auto Company BIO", 
+      currentPrice: 0, 
+      prices: [8, 15, 3, 3, 4]
     }, 
     {
-      name: "Car 2", 
-      bio: "Car 2 Company BIO", 
-      currentPrice: 70, 
-      prices: [66, 32, 4, 12, 43]
+      name: "Watchdog", 
+      bio: "Watchdog Company BIO", 
+      currentPrice: 0, 
+      prices: [65, 62, 69, 73, 76]
+    }, 
+    {
+      name: "Guco", 
+      bio: "Guco Company BIO", 
+      currentPrice: 0, 
+      prices: [3, 3.25, 3.25, 4, 4]
+    }, 
+    {
+      name: "Grizzly Motors", 
+      bio: "Grizzly Motors Company BIO", 
+      currentPrice: 0, 
+      prices: [78, 74, 82, 80, 81]
+    }, 
+    {
+      name: "Wild Rose Farms", 
+      bio: "Wild Rose Farms Company BIO", 
+      currentPrice: 0, 
+      prices: [46, 52, 46, 46, 47.5]
+    }, 
+    {
+      name: "Fairchild’s", 
+      bio: "Fairchild’s Company BIO", 
+      currentPrice: 0, 
+      prices: [32, 35, 35.15, 32.5, 31]
     }
   ]; 
 
-  currentDay: number = 3; 
+  currentDay: number = 1; 
 
   currentCompany: company = this.companies[0]; 
 

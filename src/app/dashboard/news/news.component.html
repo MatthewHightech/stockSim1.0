@@ -18,7 +18,7 @@
       <br><br>
       <ion-row>
         <ion-col class="otherDays" *ngFor="let news of newsDataService.newspapers">
-          <div *ngIf="news.day < companyDataService.currentDay">
+          <div *ngIf="news.day < companyDataService.currentDay-1">
             <ion-title>{{ news.title }}</ion-title>
             <div *ngFor="let article of news.articles">
               <ion-text>{{ article }}</ion-text>

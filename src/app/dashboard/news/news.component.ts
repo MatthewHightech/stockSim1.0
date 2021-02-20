@@ -19,7 +19,7 @@ export class NewsComponent implements OnInit {
   constructor(public newsDataService: NewsDataServiceService, public companyDataService: CompanyDataService) { }
 
   ngOnInit() {
-    this.currentPaper = this.newsDataService.newspapers[this.companyDataService.currentDay]; 
+    this.currentPaper = this.newsDataService.newspapers[this.companyDataService.currentDay-1]; 
   }
 
 }

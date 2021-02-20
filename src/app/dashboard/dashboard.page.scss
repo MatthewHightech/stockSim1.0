@@ -43,6 +43,11 @@ img {
     color: var(--ion-color-light); 
 }
 
+.time {
+    width: 50px; 
+    --background: var(--ion-color-theme);
+}
+
 // main content
 
 #content {

@@ -90,7 +90,7 @@ export class BuySellComponent implements OnInit {
     for (let i = 0; i < this.companyService.currentCompany.prices.length; i++) {
       if (i < this.companyService.currentDay) {
           coordinates.push({
-            x: i+2, 
+            x: i+1, 
             y: this.companyService.currentCompany.prices[i]
           }); 
       } else {
