@@ -36,12 +36,12 @@ export class AuthService {
 
   // Sign in with email/password
   Login(email, password, popup) {
+     // close popup
+     popup.dismiss().then(() => { popup = null; }); 
     return this.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         // navigate to dashboard
          this.router.navigate(['/', 'dashboard']);
-         // close popup
-         popup.dismiss().then(() => { popup = null; }); 
       }).catch((error) => {
         console.log("loginFailed")
         window.alert(error.message)

@@ -28,9 +28,15 @@ export class TradePopupComponent implements OnInit {
   ngOnInit() {}
 
   updateTotals() {
-    this.subtotal= this.numStocksBought*this.companyService.currentCompany.currentPrice;
-    this.purchaseFee= this.subtotal*this.PURCHASEPERCENT; 
-    this.total= this.subtotal + this.purchaseFee; 
+    if (this.type == 'Buy') {
+      this.subtotal= this.numStocksBought*this.companyService.currentCompany.currentPrice;
+      this.purchaseFee= this.subtotal*this.PURCHASEPERCENT; 
+      this.total= this.subtotal + this.purchaseFee; 
+    } else {
+      this.subtotal= this.numStocksBought*this.companyService.currentCompany.currentPrice*-1;
+      this.purchaseFee= this.subtotal*this.PURCHASEPERCENT*-1; 
+      this.total= this.subtotal + this.purchaseFee; 
+    }
   }
 
   confirmTransaction() {
@@ -50,13 +56,29 @@ export class TradePopupComponent implements OnInit {
         this.error = "You do not have enough funds"; 
       }
     } else {
-      this.userDataService.stockTransaction(
-        this.type,
-        this.total,
-        this.companyService.currentCompany.name,
-        this.numStocksBought,
-        this.companyService.currentCompany.currentPrice
-      ); 
+      let totalCompanyStocks = 0; 
+      // add up the total number of stocks the user has in a company
+      this.userDataService.user.portfolio.forEach(element => {
+        if (element.company == this.companyService.currentCompany.name) {
+          totalCompanyStocks += element.numberOfStocks; 
+        }
+      });
+      console.log("total company stocks: " + totalCompanyStocks); 
+      // if the user has enough stocks, sell
+      if (totalCompanyStocks >= this.numStocksBought) {
+        this.userDataService.stockTransaction(
+          this.type,
+          this.total,
+          this.companyService.currentCompany.name,
+          this.numStocksBought,
+          this.companyService.currentCompany.currentPrice
+        ); 
+
+        this.success = true; 
+        setTimeout(() => {this.popover.dismiss().then(() => { this.popover = null; });}, (2000)); 
+      } else {
+        this.error = "You don't own that many stocks for " + this.companyService.currentCompany.name; 
+      }
     }
     // check if user has enough money
     // if so, subtract or add the transation based on it's "type"
