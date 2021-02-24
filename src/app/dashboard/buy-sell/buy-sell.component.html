@@ -19,6 +19,7 @@
         [plugins]="chartPlugins">
       </canvas>
       </div>
+      <ion-title>{{"You own " + userService.countUserStocks(companyService.currentCompany.name) + " " + companyService.currentCompany.name + " stocks"}}</ion-title>
       <br>
       <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
       <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>

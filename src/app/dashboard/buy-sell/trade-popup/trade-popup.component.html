@@ -3,7 +3,7 @@
   <ion-text>{{ "Current " + type + "ing price: $" + companyService.currentCompany.currentPrice}}</ion-text>
   <br><br>
   <ion-label id="error">{{ error }}</ion-label>
-  <ion-label position="floating"> {{ "Select number of stocks to " + type }}</ion-label>
+  <ion-label position="floating"> {{ "Select number of stocks to " + type + " (you own " + userDataService.countUserStocks(companyService.currentCompany.name) + ")"}}</ion-label>
   <ion-input [(ngModel)]="numStocksBought" placeholder="" type="number" (ionChange)="updateTotals()"></ion-input>
   <br>
   <ion-text>{{ "Subtotal: $" + subtotal.toFixed(2)}}</ion-text><br>
@@ -11,6 +11,9 @@
   <ion-text>{{ "Total: $" + total.toFixed(2)}}</ion-text>
   <br><br>
   <ion-text>{{ "Your budget after this transaction: $" + (this.userDataService.user.budget-total)}}</ion-text><br>
+  <ion-text *ngIf="type == 'Sell'">{{ "Stocks owned after this transaction: " + (userDataService.countUserStocks(companyService.currentCompany.name)-numStocksBought)}}</ion-text>
+  <ion-text *ngIf="type == 'Buy'">{{ "Stocks owned after this transaction: " + (userDataService.countUserStocks(companyService.currentCompany.name)+numStocksBought)}}</ion-text><br>
+
   <ion-button color="dark" (click)="confirmTransaction()">Confirm Transaction</ion-button>
 </ion-content>
 

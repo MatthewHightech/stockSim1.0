@@ -134,6 +134,16 @@ export class UserDataService {
     }
   } // stockTransaction
 
+  countUserStocks(name: string): number {
+    let numStocks = 0; 
+    this.user.portfolio.forEach(element => {
+      if (element.company == name) {
+        numStocks += element.numberOfStocks; 
+      }
+    });
+    return numStocks; 
+  }
+
   signOutReset() {
 
     this.userSubscription.unsubscribe(); 
