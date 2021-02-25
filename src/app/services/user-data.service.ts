@@ -155,6 +155,12 @@ export class UserDataService {
       budget: 100000, 
       portfolio: []
     }); 
+    this.firestore.collection("transactions", ref => ref.where('userUid', '==', this.currentUserId()))
+    .get().toPromise().then((res) => {
+      res.forEach(element => {
+        this.firestore.collection('transactions').doc(element.id).delete(); 
+      })
+    })
   }
 
 } // CLASS

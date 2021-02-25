@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { CompanyDataService } from 'src/app/services/company-data.service';
+import { company } from 'src/app/services/company.model';
 import { UserDataService } from 'src/app/services/user-data.service';
 
 
@@ -24,7 +25,12 @@ export class PortfolioComponent implements OnInit {
           time: {
               unit: 'week'
           }
-      }]
+      }], 
+      yAxes: [{
+        ticks: {
+            min: 0
+        }
+    }], 
   }
   };
 
@@ -35,19 +41,23 @@ export class PortfolioComponent implements OnInit {
   constructor(public userDataService: UserDataService, public companyService: CompanyDataService) {}
 
   ngOnInit() {
-    //this.loadGraphData(); 
+    this.loadGraphData(); 
   }
 
-  /*
+  
   loadGraphData() {
     this.currentPortfolioData = [];
     let coordinates = []; 
-    for (let i = 0; i < this.companyService.currentCompany.prices.length; i++) {
+    for (let i = 0; i < 5; i++) {
       if (i < this.companyService.currentDay) {
-          
+          let totalPortfolio = 0;
+          this.userDataService.user.portfolio.forEach(element => {
+            totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i)); 
+          });
+          let y = this.userDataService.user.budget + totalPortfolio; 
           coordinates.push({
             x: i+1, 
-            y: this.companyService.currentCompany.prices[i]
+            y: y
           }); 
       } else {
         break; 
@@ -60,7 +70,16 @@ export class PortfolioComponent implements OnInit {
     }); 
 
   }
-  */
+  
+  priceOnDay(company: string, day: number): number {
+    let returnValue; 
+    this.companyService.companies.forEach(element => {
+      if (element.name == company) {
+        returnValue = element.prices[day]; 
+      }
+    });
+    return returnValue; 
+  }
 
   getTime(date) {
     return new Date(date).toLocaleDateString();

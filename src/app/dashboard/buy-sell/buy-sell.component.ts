@@ -69,14 +69,20 @@ export class BuySellComponent implements OnInit {
   chartPlugins = [];
   chartType = 'line';
 
+
+  start: boolean = true; 
   
   ngOnInit() {
-    this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.companyService.currentDay-1]; 
-    this.loadGraphData(); 
+    
   }
 
-  changePage(company: number) {
-    this.companyService.currentCompany = this.companyService.companies[company]; 
+  changePage(company: string) {
+    this.start = false; 
+    this.companyService.companies.forEach(element => {
+      if (element.name == company) {
+        this.companyService.currentCompany = element; 
+      }
+    });
     this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.companyService.currentDay-1]; 
     this.loadGraphData(); 
     console.log(this.companyService.currentCompany); 

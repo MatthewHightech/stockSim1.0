@@ -16,8 +16,24 @@ ion-row {
     border-bottom: 4px var(--ion-color-light) solid;
 }
 
+// main chart
+
+.chart {
+    margin-top: 30px; 
+    background-color: var(--ion-color-dark);
+    padding: 20px;
+    border-radius: 3px;
+    width: 600px;
+    height: auto; 
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+// transactiron history
+
 #history {
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 ion-item {
