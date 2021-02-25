@@ -59,7 +59,7 @@ export class BuySellComponent implements OnInit {
       xAxes: [{
           type: 'time',
           time: {
-              unit: 'minute'
+              unit: 'week'
           }
       }]
   }
