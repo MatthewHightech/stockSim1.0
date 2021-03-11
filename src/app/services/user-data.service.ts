@@ -8,6 +8,8 @@ import { stock } from './stock.model';
 import { transaction } from './transaction.model';
 import { user } from './user.model';
 
+import { ChartDataSets } from 'chart.js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +23,16 @@ export class UserDataService {
     portfolio: []
   }
 
+  currentDay: number = 1; 
+
   transactions: transaction[] = []; 
 
   authState; 
 
   userSubscription: Subscription = null;
   transactionSubscription: Subscription = null;
+
+  currentPortfolioData: ChartDataSets[] = []; 
 
 
   constructor(private firestore: AngularFirestore, public router: Router, private auth: AngularFireAuth) {
@@ -142,6 +148,46 @@ export class UserDataService {
       }
     });
     return numStocks; 
+  }
+
+  // get's called when one of the company prices is changed and updates the graph on the users portfolio
+  updateUserPortfolioChart(companies) {
+    console.log("Companies", companies); 
+
+    this.currentPortfolioData = []; 
+    let coordinates = []; 
+    for (let i = 0; i < 5; i++) {
+      if (i < this.currentDay) {
+        let totalPortfolio = 0;
+        this.user.portfolio.forEach(element => {
+          totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i, companies)); 
+        });
+        let y = this.user.budget + totalPortfolio; 
+        coordinates.push({
+          x: i, 
+          y: y
+        }); 
+
+        this.currentPortfolioData.push({
+          data: coordinates, 
+          label: "Portfolio Graph", 
+          pointRadius: 1
+        }); 
+
+        console.log("Portfolio Graph Data: ", this.currentPortfolioData); 
+      }// if
+    } // for
+  } // updateUserPortfolioChart
+
+  // Helper function for "updateUserPortfolioChart" and returns the price of a stock on a specifyed day
+  priceOnDay(company: string, day: number, companies): number {
+    let returnValue; 
+    companies.forEach(element => {
+      if (element.name == company) {
+        returnValue = element.prices[day]; 
+      }
+    });
+    return returnValue; 
   }
 
   signOutReset() {

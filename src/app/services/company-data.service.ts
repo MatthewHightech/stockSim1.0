@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { company } from '../services/company.model'
+import { UserDataService } from './user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CompanyDataService {
 
   currentCompany: company = this.companies[0]; 
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private userDataService: UserDataService) {
     this.subscribeToCompanies(); 
   }
 
@@ -22,7 +23,8 @@ export class CompanyDataService {
       .valueChanges()
       .subscribe((query: company[]) => {
         this.companies = query;
-        console.log("Companies: ", this.companies); 
+        console.log("Companies: ", this.companies);
+        //this.userDataService.updateUserPortfolioChart(this.companies);  
       });
   } // subscribeToCompanies
 

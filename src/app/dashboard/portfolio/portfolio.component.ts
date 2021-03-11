@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets } from 'chart.js';
 import { CompanyDataService } from 'src/app/services/company-data.service';
 import { company } from 'src/app/services/company.model';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -12,7 +11,6 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  currentPortfolioData: ChartDataSets[] = []; 
 
   chartOptions = {
     responsive: true,
@@ -28,7 +26,7 @@ export class PortfolioComponent implements OnInit {
       }], 
       yAxes: [{
         ticks: {
-            min: 0
+            min: this.minOrDefault()
         }
     }], 
   }
@@ -41,48 +39,27 @@ export class PortfolioComponent implements OnInit {
   constructor(public userDataService: UserDataService, public companyService: CompanyDataService) {}
 
   ngOnInit() {
-    console.log("Before All: ", this.currentPortfolioData); 
-    this.loadGraphData(); 
+    this.userDataService.updateUserPortfolioChart(this.companyService.companies); 
   }
 
-  
-  loadGraphData() {
-  
-    this.currentPortfolioData.pop(); 
-    console.log("After Splice: ", this.currentPortfolioData); 
-    console.log("Day: ", this.companyService.currentDay); 
+  // Helper Functions
 
-    let coordinates = []; 
+  minOrDefault() {
+    if (this.userDataService.currentPortfolioData[0] != undefined) {
+      return this.getMinPortfolioAmount(); 
+    } else {
+      return 0; 
+    }
+  }
 
-    let totalPortfolio = 0;
-    this.userDataService.user.portfolio.forEach(element => {
-      totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, this.companyService.currentDay-1)); 
-    });
-    let y = this.userDataService.user.budget + totalPortfolio; 
-    coordinates.push({
-      x: this.companyService.currentDay, 
-      y: y
-    }); 
-
-    this.currentPortfolioData.push({
-      data: coordinates, 
-      label: "Portfolio Graph", 
-      pointRadius: 1
-    }); 
-
-    console.log("After Push: ", this.currentPortfolioData); 
-
-
-  } // load graph
-  
-  priceOnDay(company: string, day: number): number {
-    let returnValue; 
-    this.companyService.companies.forEach(element => {
-      if (element.name == company) {
-        returnValue = element.prices[day]; 
+  getMinPortfolioAmount() {
+    let minAmount = 1000000;
+    this.userDataService.currentPortfolioData[0].data.forEach(element => {
+      if (element.y < minAmount) {
+        minAmount = element.y; 
       }
     });
-    return returnValue; 
+    return minAmount-1000; 
   }
 
   getTime(date) {

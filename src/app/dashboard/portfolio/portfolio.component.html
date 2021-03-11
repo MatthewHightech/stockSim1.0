@@ -10,7 +10,7 @@
     <ion-col size="8">
       <div class="chart">
         <canvas baseChart
-        [datasets]="currentPortfolioData" 
+        [datasets]="userDataService.currentPortfolioData" 
         [options]="chartOptions"
         [legend]="chartLegend" 
         [chartType]="chartType" 
