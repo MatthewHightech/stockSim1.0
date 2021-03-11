@@ -41,35 +41,39 @@ export class PortfolioComponent implements OnInit {
   constructor(public userDataService: UserDataService, public companyService: CompanyDataService) {}
 
   ngOnInit() {
+    console.log("Before All: ", this.currentPortfolioData); 
     this.loadGraphData(); 
   }
 
   
   loadGraphData() {
-    this.currentPortfolioData = [];
+  
+    this.currentPortfolioData.pop(); 
+    console.log("After Splice: ", this.currentPortfolioData); 
+    console.log("Day: ", this.companyService.currentDay); 
+
     let coordinates = []; 
-    for (let i = 0; i < 5; i++) {
-      if (i < this.companyService.currentDay) {
-          let totalPortfolio = 0;
-          this.userDataService.user.portfolio.forEach(element => {
-            totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i)); 
-          });
-          let y = this.userDataService.user.budget + totalPortfolio; 
-          coordinates.push({
-            x: i+1, 
-            y: y
-          }); 
-      } else {
-        break; 
-      }
-    } // for each price change
+
+    let totalPortfolio = 0;
+    this.userDataService.user.portfolio.forEach(element => {
+      totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, this.companyService.currentDay-1)); 
+    });
+    let y = this.userDataService.user.budget + totalPortfolio; 
+    coordinates.push({
+      x: this.companyService.currentDay, 
+      y: y
+    }); 
+
     this.currentPortfolioData.push({
       data: coordinates, 
       label: "Portfolio Graph", 
       pointRadius: 1
     }); 
 
-  }
+    console.log("After Push: ", this.currentPortfolioData); 
+
+
+  } // load graph
   
   priceOnDay(company: string, day: number): number {
     let returnValue; 
