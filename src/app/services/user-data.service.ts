@@ -18,12 +18,11 @@ export class UserDataService {
 
   user: user = {
     username: "", 
-    classCode: "", 
+    classroom: "", 
     budget: 0, 
-    portfolio: []
+    portfolio: [],
+    day: 1
   }
-
-  currentDay: number = 1; 
 
   transactions: transaction[] = []; 
 
@@ -31,6 +30,7 @@ export class UserDataService {
 
   userSubscription: Subscription = null;
   transactionSubscription: Subscription = null;
+  classroomSubscription: Subscription = null;
 
   currentPortfolioData: ChartDataSets[] = []; 
 
@@ -66,7 +66,7 @@ export class UserDataService {
         this.user = ref;
         console.log(this.user); 
       });
-
+      // subscribe to users transactions
       this.transactionSubscription = this.firestore.collection("transactions", ref => ref.where('userUid', '==', this.currentUserId()))
       .valueChanges()
       .subscribe((query: transaction[]) => {
@@ -83,7 +83,7 @@ export class UserDataService {
   stockTransaction(type: string, total: number, company: string, numberOfStocks: number, stockPrice: number) {
     this.firestore.collection('transactions').add({
       userUid: this.currentUserId(), 
-      date: new Date(),
+      date: this.user.day,
       total: total, 
       type: type,
       company: company, 
@@ -151,18 +151,15 @@ export class UserDataService {
   }
 
   // get's called when one of the company prices is changed and updates the graph on the users portfolio
+  // *companies = companyservice.companies
   updateUserPortfolioChart(companies) {
     console.log("Companies", companies); 
 
     this.currentPortfolioData = []; 
     let coordinates = []; 
     for (let i = 0; i < 5; i++) {
-      if (i < this.currentDay) {
-        let totalPortfolio = 0;
-        this.user.portfolio.forEach(element => {
-          totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i, companies)); 
-        });
-        let y = this.user.budget + totalPortfolio; 
+      if (i < this.user.day) {
+        let y = this.user.budget + this.totalPortfolio(i, companies); 
         coordinates.push({
           x: i, 
           y: y
@@ -178,6 +175,52 @@ export class UserDataService {
       }// if
     } // for
   } // updateUserPortfolioChart
+
+  updateUserPortfolioChartV2(companies) {
+    this.currentPortfolioData = []; 
+    let coordinates = []; 
+    let y = 100000;  
+    for (let i = 0; i < 5; i++) {
+      if (i < this.user.day) {
+        let numOfTransactionsOnDay = 0; 
+        this.transactions.forEach(element => {
+          if (element.date-1 == i) {
+            y += element.total; 
+            console.log(`y: ${y} -- Element Total: ${element.total}`); 
+          }
+          
+        });
+
+        coordinates.push({
+          x: i, 
+          y: y
+        }); 
+
+        this.currentPortfolioData.push({
+          data: coordinates, 
+          label: "Portfolio Graph", 
+          pointRadius: 1
+        }); 
+      }
+    }
+  }
+
+  updateDay() {
+    this.firestore.collection('users').doc<user>(this.currentUserId()).update({
+      day: this.user.day
+    }); 
+  }
+
+  // helper function that returns users total portfolio on that current day
+  // * i = the day the total is checking for
+  // * companies = the companies the user owns stocks for
+  totalPortfolio(i, companies) {
+    let totalPortfolio = 0;
+    this.user.portfolio.forEach(element => {
+      totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i, companies)); 
+    });
+    return totalPortfolio
+  }
 
   // Helper function for "updateUserPortfolioChart" and returns the price of a stock on a specifyed day
   priceOnDay(company: string, day: number, companies): number {
@@ -199,7 +242,8 @@ export class UserDataService {
   userDataReset() {
     this.firestore.collection('users').doc<user>(this.currentUserId()).update({
       budget: 100000, 
-      portfolio: []
+      portfolio: [], 
+      day: 1
     }); 
     this.firestore.collection("transactions", ref => ref.where('userUid', '==', this.currentUserId()))
     .get().toPromise().then((res) => {
@@ -210,3 +254,4 @@ export class UserDataService {
   }
 
 } // CLASS
+

@@ -83,18 +83,19 @@ export class BuySellComponent implements OnInit {
         this.companyService.currentCompany = element; 
       }
     });
-    this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.companyService.currentDay-1]; 
+    this.companyService.currentCompany.currentPrice = this.companyService.currentCompany.prices[this.userService.user.day-1]; 
     this.loadGraphData(); 
     console.log(this.companyService.currentCompany); 
   }
 
+  // loads individual company graphs
   loadGraphData() {
     console.log(new Date()); 
     console.log("load graph length: " + this.companyService.currentCompany.prices.length)
     this.currentStockData = [];
     let coordinates = []; 
     for (let i = 0; i < this.companyService.currentCompany.prices.length; i++) {
-      if (i < this.companyService.currentDay) {
+      if (i < this.userService.user.day) {
           coordinates.push({
             x: i+1, 
             y: this.companyService.currentCompany.prices[i]

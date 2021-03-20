@@ -10,8 +10,6 @@ export class CompanyDataService {
 
   companies: company[] = []; 
 
-  currentDay: number = 1; 
-
   currentCompany: company = this.companies[0]; 
 
   constructor(private firestore: AngularFirestore, private userDataService: UserDataService) {

@@ -2,7 +2,8 @@ import { stock } from "./stock.model";
 
 export interface user {
     username: string,
-    classCode: string,
+    classroom: string,
     budget: number, 
-    portfolio: stock[]
+    portfolio: stock[], 
+    day: number
 }

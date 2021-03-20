@@ -17,6 +17,9 @@
         [plugins]="chartPlugins">
       </canvas>
       </div>
+      <br>
+      <ion-title>{{ "Current Net Worth: $" + (this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies) + this.userDataService.user.budget)}}</ion-title>
+
     </ion-col>
     <!-- Total transaction history and totals-->
     <ion-col size="4" id="history">
@@ -51,6 +54,8 @@
         </ion-row>
       </ion-item>
       <ion-title>{{ "Total Budget: $" + this.userDataService.user.budget}}</ion-title>
+      <br>
+      <ion-title>{{ "Current Portfolio: $" + this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies)}}</ion-title>
     </ion-col>
   </ion-row>
   <ion-row>

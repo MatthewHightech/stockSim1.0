@@ -1,6 +1,6 @@
 export interface transaction {
     userUid: string, 
-    date: Date, 
+    date: number, 
     total: number, 
     type: string, 
     company: string, 

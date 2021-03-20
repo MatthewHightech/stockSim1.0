@@ -26,7 +26,8 @@ export class AuthService {
           username: username, 
           classroom: classCode, 
           budget: 100000, 
-          portfolio: []
+          portfolio: [], 
+          day: 1
         }); 
         this.Login(email, password, popup); 
       }).catch((error) => {

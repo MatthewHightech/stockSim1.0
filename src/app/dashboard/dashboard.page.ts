@@ -26,12 +26,12 @@ export class DashboardPage implements OnInit {
 
   changeDay(type: string) {
     this.userService.updateUserPortfolioChart(this.companyService.companies); 
-    if (type == 'add' && this.companyService.currentDay < 5) {
-      this.companyService.currentDay++; 
-      this.userService.currentDay++; 
-    } else if (type == 'subtract' && this.companyService.currentDay > 1) {
-      this.companyService.currentDay--;
+    if (type == 'add' && this.userService.user.day < 5) {
+      this.userService.user.day++; 
+    } else if (type == 'subtract' && this.userService.user.day > 1) {
+      this.userService.user.day--;
     }
+    this.userService.updateDay(); 
   }
 
 }
