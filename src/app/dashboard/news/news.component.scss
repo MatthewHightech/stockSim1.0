@@ -24,10 +24,25 @@ ion-row {
     font-size: 26px;
 }
 
+.otherDays {
+    margin: 10px; 
+    padding: 7px; 
+}
+
 .otherDays ion-title {
     font-size: 18px;
 }
 
 .otherDays ion-text {
     font-size: 14px;
+}
+
+.newsButton {
+    border: 3px black solid; 
+    margin-top: 10px;
+}
+
+.newsButton:hover {
+    cursor: pointer;
+    border: 5px black solid; 
 }

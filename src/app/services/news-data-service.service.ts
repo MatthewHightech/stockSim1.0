@@ -10,43 +10,57 @@ export class NewsDataServiceService {
   newspapers: newspaper[] = [
     {
       day: 0, 
-      title: "Daily News " + "Day 1", 
+      title: "NA Times " + "Day 1", 
       articles: [
-        "article 1", 
-        "article 2"
-      ]
+        "Pipeline Predicament", 
+        "A Dying Dog", 
+        "Low Jabs, High Budgets", 
+        "A Very Frosty Time"
+      ], 
+      paper: "NA1.png"
     }, 
     {
       day: 1, 
-      title: "Daily News " + "Day 2", 
+      title: "NA Times " + "Day 2", 
       articles: [
-        "article 1", 
-        "article 2"
-      ]
+        "Race to the Finish Line", 
+        "Surprise Launch", 
+        "Campaigning Begins", 
+        "Reigning it in"
+      ], 
+      paper: "NA2.png"
     }, 
     {
       day: 2, 
-      title: "Daily News " + "Day 3", 
+      title: "NA Times " + "Day 3", 
       articles: [
-        "article 1", 
-        "article 2"
-      ]
+        "Strong Performance", 
+        "Protoflop", 
+        "All Eyes on BC", 
+        "Not So Ethical", 
+        "A Second Chance"
+      ], 
+      paper: "NA3.png"
     }, 
     {
       day: 3, 
-      title: "Daily News " + "Day 4", 
+      title: "NA Times " + "Day 4", 
       articles: [
-        "article 1", 
-        "article 2"
-      ]
+        "Landslide", 
+        "Charity for Redemption", 
+        "Going to Court"
+      ], 
+      paper: "NA4.png"
     }, 
     {
       day: 4, 
-      title: "Daily News " + "Day 5", 
+      title: "NA Times " + "Day 5", 
       articles: [
-        "article 1", 
-        "article 2"
-      ]
+        "Pipeline Win", 
+        "Second Time’s the Charm?", 
+        "Locals First"
+      ], 
+      paper: "NA5.png"
     }
   ]; 
 

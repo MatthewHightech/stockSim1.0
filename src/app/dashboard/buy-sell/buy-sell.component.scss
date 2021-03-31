@@ -3,6 +3,14 @@ ion-grid {
 }
 
 
+div {
+    height: 175px;
+    overflow-y: auto;
+    font-size: 14px; 
+    margin: 15px, 0px; 
+}
+
+
 ion-col {
     text-align: center;
     color: var(--ion-color-light); 

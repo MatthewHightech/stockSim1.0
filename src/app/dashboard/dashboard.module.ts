@@ -16,6 +16,7 @@ import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { TradePopupComponent } from './buy-sell/trade-popup/trade-popup.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { NewsPopupComponent } from './news/news-popup/news-popup.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,6 @@ import { ChartsModule } from 'ng2-charts';
     DashboardPageRoutingModule, 
     ChartsModule
   ],
-  declarations: [DashboardPage, PortfolioComponent, NewsComponent, HomeComponent, BuySellComponent, TradePopupComponent]
+  declarations: [DashboardPage, PortfolioComponent, NewsComponent, HomeComponent, BuySellComponent, TradePopupComponent, NewsPopupComponent]
 })
 export class DashboardPageModule {}

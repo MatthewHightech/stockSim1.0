@@ -1,5 +1,6 @@
 export interface newspaper {
     day: number, 
     title: string, 
-    articles: string[]
+    articles: string[], 
+    paper: string
 }
