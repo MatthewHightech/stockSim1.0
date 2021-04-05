@@ -9,9 +9,9 @@
     <ion-col id="content">
       <ion-row>
         <ion-col class="today">
-          <div class="newsButton" (click)="popover(currentPaper.paper)">
-            <ion-title>{{ currentPaper.title }}</ion-title>
-            <div *ngFor="let article of currentPaper.articles">
+          <div class="newsButton" (click)="popover(newsDataService.currentPaper.paper)">
+            <ion-title>{{ newsDataService.currentPaper.title }}</ion-title>
+            <div *ngFor="let article of newsDataService.currentPaper.articles">
               <ion-text>{{ article }}</ion-text>
             </div>
           </div>
