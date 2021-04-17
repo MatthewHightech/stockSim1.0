@@ -52,4 +52,10 @@ img {
 
 #content {
     background: var(--ion-color-theme);
+    overflow-y: auto;
+}
+
+ion-text {
+    margin: 10px;
+    font-size: 24px;
 }

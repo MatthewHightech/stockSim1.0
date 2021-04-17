@@ -25,12 +25,17 @@ ion-title {
 }
 
 ion-text {
+    margin-left: 30px; 
     font-size: 16px;
 }
 
 #header {
     height: 10vh;
     border-bottom: 4px var(--ion-color-light) solid;
+}
+
+#header ion-title {
+    display: inline;
 }
 
 // sidebar section
