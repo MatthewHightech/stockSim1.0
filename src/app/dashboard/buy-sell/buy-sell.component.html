@@ -18,8 +18,14 @@
       </canvas>
       </div>
       <ion-title>{{"You own " + userService.countUserStocks(companyService.currentCompany.name) + " " + companyService.currentCompany.name + " stocks"}}</ion-title>
-      <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
-      <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+      <div *ngIf="userService.canTrade()">
+        <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
+        <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+      </div>
+      <div *ngIf="!userService.canTrade()">
+        <ion-title>Trading is only avalible during trading hours (9am - 5pm PST)</ion-title>
+      </div>
+      
     </ion-col>
     <ion-col size="10" *ngIf="start == true">
       <ion-title>Welcome to the Trading Page</ion-title>

@@ -18,13 +18,13 @@ export class AuthService {
     } // constructor
 
   // Sign up with email/password
-  SignUp(username, email, password, classCode, popup) {
+  SignUp(username, email, password, popup) {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
         // save user doc in users collection in firestore
         await this.firestore.collection('users').doc(result.user.uid).set({
           username: username, 
-          classroom: classCode, 
+          startDate: new Date(Date.now()), 
           budget: 100000, 
           portfolio: [], 
           day: 1
