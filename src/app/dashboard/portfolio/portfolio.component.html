@@ -18,44 +18,44 @@
       </canvas>
       </div>
       <br>
-      <ion-title>{{ "Current Net Worth: $" + (this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies) + this.userDataService.user.budget)}}</ion-title>
+      <ion-text>{{ "Current Net Worth: $" + (this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies) + this.userDataService.user.budget)}}</ion-text>
 
     </ion-col>
     <!-- Total transaction history and totals-->
     <ion-col size="4" id="history">
       
       <ion-title>Transaction History</ion-title>
-      <ion-item *ngFor="let transaction of userDataService.transactions">
+      <ion-item id="history" *ngFor="let transaction of userDataService.transactions">
         <ion-row *ngIf="transaction.type == 'Buy'" class="Buy">
           <ion-col>
             <ion-row>
-              <ion-text>{{"Bought " + transaction.company}}</ion-text>
+              <ion-label>{{"Bought " + transaction.company}}</ion-label>
             </ion-row>
             <ion-row>
-              <ion-text>{{transaction.numOfStocks + " stocks aquired at $" + transaction.stockPrice + "/stock"}}</ion-text>
+              <ion-label>{{transaction.numOfStocks + " stocks aquired at $" + transaction.stockPrice + "/stock"}}</ion-label>
             </ion-row>
             <ion-row>
-              <ion-text>{{"Totaling $" + transaction.total + " spent"}}</ion-text>
+              <ion-label>{{"Totaling $" + transaction.total + " spent"}}</ion-label>
             </ion-row>
           </ion-col>
         </ion-row>
         <ion-row *ngIf="transaction.type == 'Sell'" class="Sell">
           <ion-col>
           <ion-row>
-            <ion-text>{{"Sold " + transaction.company}}</ion-text>
+            <ion-label>{{"Sold " + transaction.company}}</ion-label>
           </ion-row>
           <ion-row>
-            <ion-text>{{transaction.numOfStocks + " stocks sold at $" + transaction.stockPrice + "/stock"}}</ion-text>
+            <ion-label>{{transaction.numOfStocks + " stocks sold at $" + transaction.stockPrice + "/stock"}}</ion-label>
           </ion-row>
           <ion-row>
-            <ion-text>{{"Totaling $" + transaction.total*-1 + " gained"}}</ion-text>
+            <ion-label>{{"Totaling $" + transaction.total*-1 + " gained"}}</ion-label>
           </ion-row>
         </ion-col>
         </ion-row>
       </ion-item>
-      <ion-title>{{ "Total Budget: $" + this.userDataService.user.budget}}</ion-title>
+      <ion-text>{{ "Total Budget: $" + this.userDataService.user.budget}}</ion-text>
       <br>
-      <ion-title>{{ "Current Portfolio: $" + this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies)}}</ion-title>
+      <ion-text>{{ "Current Portfolio: $" + this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies)}}</ion-text>
     </ion-col>
   </ion-row>
   <ion-row>

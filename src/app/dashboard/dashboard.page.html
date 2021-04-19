@@ -1,35 +1,35 @@
-<ion-content>
+<div id="content">
   <ion-grid>
     <ion-row>
       <ion-col id="sidebar" size="2">
         <ion-title>{{userService.user.username}}</ion-title>
-        <ion-button id="button1" class="menuButton" (click)="changePage('home')" disabled>Dashboard</ion-button>
         <ion-button class="menuButton" (click)="changePage('portfolio')">Portfolio</ion-button>
         <ion-button class="menuButton" (click)="changePage('buy-sell')">Buy/Sell</ion-button>
         <ion-button class="menuButton" (click)="changePage('news')">News</ion-button>
-        <ion-button class="menuButton" disabled>Profile/Settings</ion-button>
         <ion-button class="menuButton" (click)="authService.LogOut()">Sign Out</ion-button>
-        <div>
-          <ion-title>{{ "Week: " + userService.user.day}}</ion-title>
+        
+        <ion-text>{{ "Week: " + userService.user.day}}</ion-text>
           <!--<ion-button class="time" (click)="changeDay('subtract')">
             <ion-icon name="remove-circle-outline"></ion-icon>
-          </ion-button>-->
+          </ion-button>
+        
           <ion-button class="time" (click)="changeDay('add')">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
+          
         </div>
         <div>
           <ion-button color="theme" (click)="userService.userDataReset()">
             Reset User (for testing)
-          </ion-button>
-        </div>
+          </ion-button>-->
+        
       </ion-col>
       <ion-col id="content" size="10">
-        <app-home *ngIf="page == 'home'"></app-home>
-        <app-portfolio *ngIf="page == 'portfolio'"></app-portfolio>
+
+        <app-portfolio *ngIf="page == 'portfolio' || page == 'home'"></app-portfolio>
         <app-buy-sell *ngIf="page == 'buy-sell'"></app-buy-sell>
         <app-news *ngIf="page == 'news'"></app-news>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</div>

@@ -2,7 +2,7 @@ ion-col {
     text-align: center;
     color: var(--ion-color-light); 
     font-family: 'theme';
-    font-size: 32px;
+    //font-size: 32px;
     margin: 0px;
     padding: 0px; 
 }
@@ -23,7 +23,7 @@ ion-row {
     background-color: var(--ion-color-dark);
     padding: 20px;
     border-radius: 3px;
-    width: 600px;
+    width: 500px;
     height: auto; 
     margin-left: auto;
     margin-right: auto;
@@ -33,7 +33,7 @@ ion-row {
 // transactiron history
 
 #history {
-    overflow-y: scroll;
+    //overflow-y: auto;
 }
 
 ion-item {
@@ -56,8 +56,12 @@ ion-item {
     margin-left: auto;
 }
 
+ion-label {
+    font-size: 14px;
+    color: var(--ion-color-dark) !important; 
+}
+
 ion-text {
-    display: block;
-    font-size: 16px;
-    color: var(--ion-color-dark); 
+    font-size: 24px;
+    color: var(--ion-color-light);
 }

@@ -22,7 +22,7 @@ export class CompanyDataService {
       .subscribe((query: company[]) => {
         this.companies = query;
         console.log("Companies: ", this.companies);
-        //this.userDataService.updateUserPortfolioChart(this.companies);  
+        this.userDataService.updateUserPortfolioChart(this.companies);  
       });
   } // subscribeToCompanies
 

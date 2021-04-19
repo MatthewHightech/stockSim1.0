@@ -13,13 +13,6 @@ import { NewsPopupComponent } from './news-popup/news-popup.component';
 })
 export class NewsComponent implements OnInit {
 
-  currentPaper: newspaper = {
-    day: 0, 
-    title: "test", 
-    articles: [], 
-    paper: ""
-  };
-
   newsPopup = null;
 
   constructor(
@@ -29,7 +22,7 @@ export class NewsComponent implements OnInit {
     public popoverController: PopoverController) { }
 
   ngOnInit() {
-    this.currentPaper = this.newsDataService.newspapers[this.UserDataService.user.day-1]; 
+    this.newsDataService.currentPaper = this.newsDataService.newspapers[this.UserDataService.user.day-1]; 
   }
 
       // async function to control the potential popups for the game. This includes a buy and sell popup

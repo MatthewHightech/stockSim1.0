@@ -1,15 +1,13 @@
 <ion-grid>
   <ion-row>
     <ion-col id="header">
-      <ion-title>Buy/Sell</ion-title><ion-text>{{ "Budget: $" + userService.user.budget}}</ion-text>
+      <ion-text>Buy/Sell</ion-text><ion-text>{{ "Budget: $" + userService.user.budget}}</ion-text>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="10" *ngIf="start == false">
+    <ion-col id="container" size="10" *ngIf="start == false">
       <ion-title>{{ companyService.currentCompany.name }}</ion-title>
-      <br>
-      <div>{{ companyService.currentCompany.bio }}</div>
-      <br>
+      <div id="bio">{{ companyService.currentCompany.bio }}</div>
       <div class="chart">
         <canvas baseChart
         [datasets]="currentStockData" 
@@ -20,14 +18,19 @@
       </canvas>
       </div>
       <ion-title>{{"You own " + userService.countUserStocks(companyService.currentCompany.name) + " " + companyService.currentCompany.name + " stocks"}}</ion-title>
-      <br>
-      <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
-      <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+      <div *ngIf="userService.canTrade()">
+        <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
+        <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+      </div>
+      <div *ngIf="!userService.canTrade()">
+        <ion-title>Trading is only avalible during trading hours (9am - 5pm PST)</ion-title>
+      </div>
+      
     </ion-col>
     <ion-col size="10" *ngIf="start == true">
       <ion-title>Welcome to the Trading Page</ion-title>
       <br>
-      <ion-title>To Get started do this, that, and then this.</ion-title>
+      <ion-text>To get started, click on a company you want to invest or sell shares in, then press either the "buy" or "sell" buttons below the graph. </ion-text>
       <br>
     </ion-col>
 

@@ -18,7 +18,7 @@ export class UserDataService {
 
   user: user = {
     username: "", 
-    classroom: "", 
+    startDate: "", 
     budget: 0, 
     portfolio: [],
     day: 1
@@ -63,8 +63,9 @@ export class UserDataService {
       this.userSubscription = this.firestore.collection('users').doc<user>(this.currentUserId())
       .valueChanges()
       .subscribe((ref) => {
+        ref.startDate = ref.startDate.toDate()
         this.user = ref;
-        console.log(this.user); 
+        this.user.day = this.setUserDay()
       });
       // subscribe to users transactions
       this.transactionSubscription = this.firestore.collection("transactions", ref => ref.where('userUid', '==', this.currentUserId()))
@@ -79,6 +80,26 @@ export class UserDataService {
       this.router.navigate(['/', 'sign-up-login']);
     }  
   } // subscribeToDb
+
+  setUserDay() {
+    let daysPassed
+    let currentDay = new Date(Date.now()).getDate()
+
+    if (this.user.startDate.getDate() > currentDay) {
+      daysPassed = currentDay + (this.getDaysInMonth(this.user.startDate.getMonth()) - this.user.startDate.getDate()) + 1;
+    } else {
+      daysPassed = currentDay - this.user.startDate.getDate() + 1
+    }
+    return daysPassed
+  }
+
+  getDaysInMonth(month) {
+    return new Date(2021, month+1, 0).getDate();
+  }
+
+  canTrade() {
+    return (new Date(Date.now()).getHours()) > 9 && (new Date(Date.now()).getHours()) < 17 
+  }
 
   stockTransaction(type: string, total: number, company: string, numberOfStocks: number, stockPrice: number) {
     this.firestore.collection('transactions').add({
@@ -243,7 +264,8 @@ export class UserDataService {
     this.firestore.collection('users').doc<user>(this.currentUserId()).update({
       budget: 100000, 
       portfolio: [], 
-      day: 1
+      day: 1, 
+      startDate: new Date(Date.now())
     }); 
     this.firestore.collection("transactions", ref => ref.where('userUid', '==', this.currentUserId()))
     .get().toPromise().then((res) => {

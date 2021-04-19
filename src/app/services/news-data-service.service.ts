@@ -7,6 +7,13 @@ import { newspaper } from './newspaper.model';
 })
 export class NewsDataServiceService {
 
+  currentPaper: newspaper = {
+    day: 0, 
+    title: "test", 
+    articles: [], 
+    paper: ""
+  };
+
   newspapers: newspaper[] = [
     {
       day: 0, 
