@@ -19,24 +19,6 @@ export class SignUpLoginPage implements OnInit {
   constructor(private router: Router, public auth: AuthService, public popoverController: PopoverController, public userDataService: UserDataService) {}
 
   ngOnInit() {
-    var url = "https://nebo-machine.vercel.app/nps"
-						+"?name="+encodeURIComponent("Matt Smith")
-						+"&email="+encodeURIComponent("Test")
-						+"&website="+encodeURIComponent("Test")
-						+"&rating="+10;
-
-    var xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.onreadystatechange = function(e) {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("Req: ", e)
-        } else {
-            console.log("error", e)
-        }
-    };
-    
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
   }
 
   // async function to control the potential popups for the game. This includes a deathscreen, instructions, and checkpoints
