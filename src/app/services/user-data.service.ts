@@ -237,8 +237,11 @@ export class UserDataService {
   // * companies = the companies the user owns stocks for
   totalPortfolio(i, companies) {
     let totalPortfolio = 0;
+    if (i > 4) {
+      i = 4
+    }
     this.user.portfolio.forEach(element => {
-      totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i, companies)); 
+        totalPortfolio += (element.numberOfStocks*this.priceOnDay(element.company, i, companies)); 
     });
     return totalPortfolio
   }
