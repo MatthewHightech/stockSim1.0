@@ -1,0 +1,48 @@
+ion-col {
+    text-align: center;
+    color: var(--ion-color-light); 
+    font-family: 'theme';
+    font-size: 32px;
+    margin: 0px;
+    padding: 0px; 
+}
+
+#header {
+    height: 10vh;
+    border-bottom: 4px var(--ion-color-light) solid;
+}
+
+ion-row {
+    text-align: center;
+}
+
+.today ion-title {
+    font-size: 36px;
+}
+
+.today ion-text {
+    font-size: 26px;
+}
+
+.otherDays {
+    margin: 10px; 
+    padding: 7px; 
+}
+
+.otherDays ion-title {
+    font-size: 18px;
+}
+
+.otherDays ion-text {
+    font-size: 14px;
+}
+
+.newsButton {
+    border: 3px black solid; 
+    margin-top: 10px;
+}
+
+.newsButton:hover {
+    cursor: pointer;
+    border: 5px black solid; 
+}

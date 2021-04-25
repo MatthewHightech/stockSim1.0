@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "stocksim-a9fe0": {
+      "hosting": {
+        "app": [
+          "stocksim-a9fe0"
+        ]
+      }
+    }
+  }
+}

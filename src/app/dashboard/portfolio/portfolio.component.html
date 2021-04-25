@@ -1,0 +1,67 @@
+<ion-grid>
+  <ion-row>
+    <ion-col id="header">
+      <ion-title>Portfolio</ion-title>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <!-- Total Earnings/losses graph-->
+    <ion-col size="8">
+      <div class="chart">
+        <canvas baseChart
+        [datasets]="userDataService.currentPortfolioData" 
+        [options]="chartOptions"
+        [legend]="chartLegend" 
+        [chartType]="chartType" 
+        [plugins]="chartPlugins">
+      </canvas>
+      </div>
+      <br>
+      <ion-text>{{ "Current Net Worth: $" + (this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies) + this.userDataService.user.budget)}}</ion-text>
+
+    </ion-col>
+    <!-- Total transaction history and totals-->
+    <ion-col size="4" id="history">
+      
+      <ion-title>Transaction History</ion-title>
+      <ion-item id="history" *ngFor="let transaction of userDataService.transactions">
+        <ion-row *ngIf="transaction.type == 'Buy'" class="Buy">
+          <ion-col>
+            <ion-row>
+              <ion-label>{{"Bought " + transaction.company}}</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-label>{{transaction.numOfStocks + " stocks aquired at $" + transaction.stockPrice + "/stock"}}</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-label>{{"Totaling $" + transaction.total + " spent"}}</ion-label>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="transaction.type == 'Sell'" class="Sell">
+          <ion-col>
+          <ion-row>
+            <ion-label>{{"Sold " + transaction.company}}</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>{{transaction.numOfStocks + " stocks sold at $" + transaction.stockPrice + "/stock"}}</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>{{"Totaling $" + transaction.total*-1 + " gained"}}</ion-label>
+          </ion-row>
+        </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-text>{{ "Total Budget: $" + this.userDataService.user.budget}}</ion-text>
+      <br>
+      <ion-text>{{ "Current Portfolio: $" + this.userDataService.totalPortfolio(this.userDataService.user.day-1, this.companyService.companies)}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <!-- Individual Earnings/losses graphs-->
+    <ion-col>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>

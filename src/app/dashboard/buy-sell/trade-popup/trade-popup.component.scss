@@ -1,0 +1,17 @@
+ion-content {
+    text-align: center;
+}
+
+ion-title {
+    margin: 10px;
+}
+
+ion-button {
+    --width: 50%; 
+    --border: 2px var(--ion-color-dark) solid; 
+}
+
+
+#error {
+    color: red; 
+}

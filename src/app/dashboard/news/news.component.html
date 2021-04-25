@@ -1,0 +1,33 @@
+<ion-grid>
+  <ion-row>
+    <ion-col id="header">
+      <ion-title>News</ion-title>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col id="content">
+      <ion-row>
+        <ion-col class="today">
+          <div class="newsButton" (click)="popover(newsDataService.currentPaper.paper)">
+            <ion-title>{{ newsDataService.currentPaper.title }}</ion-title>
+            <div *ngFor="let article of newsDataService.currentPaper.articles">
+              <ion-text>{{ article }}</ion-text>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <br><br>
+      <ion-row>
+        <ion-col class="otherDays" *ngFor="let news of newsDataService.newspapers">
+          <div class="newsButton" *ngIf="news.day < UserDataService.user.day-1" (click)="popover(news.paper)">
+            <ion-title>{{ news.title }}</ion-title>
+            <div *ngFor="let article of news.articles">
+              <ion-text>{{ article }}</ion-text>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-grid>

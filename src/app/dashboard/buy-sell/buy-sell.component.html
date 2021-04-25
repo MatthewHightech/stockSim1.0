@@ -1,0 +1,47 @@
+<ion-grid>
+  <ion-row>
+    <ion-col id="header">
+      <ion-text>Buy/Sell</ion-text><ion-text>{{ "Budget: $" + userService.user.budget}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col id="container" size="10" *ngIf="start == false">
+      <ion-title>{{ companyService.currentCompany.name }}</ion-title>
+      <div id="bio">{{ companyService.currentCompany.bio }}</div>
+      <div class="chart">
+        <canvas baseChart
+        [datasets]="currentStockData" 
+        [options]="chartOptions"
+        [legend]="chartLegend" 
+        [chartType]="chartType" 
+        [plugins]="chartPlugins">
+      </canvas>
+      </div>
+      <ion-title>{{"You own " + userService.countUserStocks(companyService.currentCompany.name) + " " + companyService.currentCompany.name + " stocks"}}</ion-title>
+      <div *ngIf="userService.canTrade()">
+        <ion-button color="dark" (click)="popover('Buy')">Buy</ion-button>
+        <ion-button color="dark" (click)="popover('Sell')">Sell</ion-button>
+      </div>
+      <div *ngIf="!userService.canTrade()">
+        <ion-title>Trading is only avalible during trading hours (9am - 5pm PST)</ion-title>
+      </div>
+      
+    </ion-col>
+    <ion-col size="10" *ngIf="start == true">
+      <ion-title>Welcome to the Trading Page</ion-title>
+      <br>
+      <ion-text>To get started, click on a company you want to invest or sell shares in, then press either the "buy" or "sell" buttons below the graph. </ion-text>
+      <br>
+    </ion-col>
+
+    <ion-col id="sidebar" size="2">
+      <ion-button id="button1" class="menuButton" (click)="changePage('Horizon Drilling')">Horizon Drilling</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Katze Auto')">Katze Auto</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Watchdog')">Watchdog</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Guco')">Guco</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Grizzly Motors')">Grizzly Motors</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Wild Rose Farms')">Wild Rose Farms</ion-button>
+      <ion-button class="menuButton" (click)="changePage('Fairchild’s')">Fairchild’s</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

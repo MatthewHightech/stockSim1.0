@@ -1,0 +1,67 @@
+ion-col {
+    text-align: center;
+    color: var(--ion-color-light); 
+    font-family: 'theme';
+    //font-size: 32px;
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-row {
+    text-align: center;
+}
+
+#header {
+    height: 10vh;
+    border-bottom: 4px var(--ion-color-light) solid;
+}
+
+// main chart
+
+.chart {
+    margin-top: 30px; 
+    background-color: var(--ion-color-dark);
+    padding: 20px;
+    border-radius: 3px;
+    width: 500px;
+    height: auto; 
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+// transactiron history
+
+#history {
+    //overflow-y: auto;
+}
+
+ion-item {
+    --background: var(--ion-color-theme);
+    margin: 8px; 
+    text-align: center;
+}
+
+.Buy {
+    padding: 7px;
+    background-color: var(--ion-color-warning);
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+.Sell {
+    padding: 7px;
+    background-color: var(--ion-color-danger);
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+ion-label {
+    font-size: 14px;
+    color: var(--ion-color-dark) !important; 
+}
+
+ion-text {
+    font-size: 24px;
+    color: var(--ion-color-light);
+}

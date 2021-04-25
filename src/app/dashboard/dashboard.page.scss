@@ -1,0 +1,61 @@
+// sidebar
+
+ion-grid {
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-row {
+    margin: 0px;
+    padding: 0px; 
+}
+
+ion-col {
+    text-align: center;
+    margin: 0px;
+    padding: 0px; 
+    height: 100vh; 
+}
+
+#sidebar {
+    background: var(--ion-color-dark);
+    font-family: 'theme';
+    color: var(--ion-color-light); 
+}
+
+img {
+    width: 60%;
+    height: auto;
+}
+
+#button1 {
+    margin-top: 20px;
+}
+
+.menuButton {
+    width: 100%;
+    --border-radius: 0px;
+    height: 100px;
+    margin: 0px;
+    --background: var(--ion-color-dark);
+    border-bottom: 2px var(--ion-color-dark-shade) solid; 
+    font-family: 'theme';
+    color: var(--ion-color-light); 
+}
+
+.time {
+    width: 50px; 
+    --background: var(--ion-color-theme);
+}
+
+// main content
+
+#content {
+    background: var(--ion-color-theme);
+    overflow-y: auto;
+}
+
+ion-text {
+    margin: 10px;
+    font-size: 24px;
+}
